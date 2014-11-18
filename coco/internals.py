@@ -2,7 +2,7 @@
 # File: internals.py
 # Title: Coco - Chatango library.
 # Author(s): Sorch & Piks & Dynamic
-# Version: 0.3(sorta stable) - c: because you're gonna need it so freaking PRAY!
+# Version: 0.4(stable-ish getting there slowly) - c: because you're gonna need it so freaking PRAY!
 # Description:
 #	  -Multi event based chatango library for handling channel messages parts/joins and other stuff
 ##################################################################

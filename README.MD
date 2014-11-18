@@ -1,6 +1,11 @@
 COCO.PY
 =====
 
+Version
+-------
+0.4 Stable-ish
+
+
 What is it?
 -----------
 An event-based library for connecting to one or multiple chatango groups... it has pms (but they just idle BUT IT DOES Have the ability to message people) :3 ... 
