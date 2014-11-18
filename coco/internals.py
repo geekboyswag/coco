@@ -213,6 +213,7 @@ class Group(object):
 		self._fontFace = "0"
 		self.reconnectAttempts = 5
 		self.banlist = list()
+		self.bannedwords = list()
 		self.users = []
 		self.user = username or None
 		self._userdata = []
