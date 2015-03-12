@@ -1,6 +1,7 @@
 import coco.internals
 import conf
 import cmdUtil
+import imp
 
 class Bot(coco.internals.Manager):
 	def _p_ok(self, group):
