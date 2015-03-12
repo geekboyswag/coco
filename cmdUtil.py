@@ -17,8 +17,7 @@ class cmd_start():
                       say("%s you have <b>'%s'</b> available commands: <b>%s</b>." % (user, len(commands), ", ".join(cm)))
                 
                 if cmd == 'say':
-                   b = ' '.join(args)
-                   if(len(b)) < 1:
+                   if(len(args)) < 1:
                       say("I can't say nothing -_-\"")
 	           else:
-	           	say(b)
+	           	say(args)
