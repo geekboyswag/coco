@@ -19,6 +19,6 @@ class cmd_start():
                 if cmd == 'say':
                    b = ' '.join(args)
                    if(len(b)) < 1:
-					           say("I can't say nothing -_-\"")
-				          else:
-					           say(b)
+                      say("I can't say nothing -_-\"")
+	           else:
+	           	say(b)
