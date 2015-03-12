@@ -1,6 +1,6 @@
 name = ""
 password = ""
-groups = ["botplayzone"]
-prefix = "." ///default prefix
-owner = ""
+groups = ["botszone"] ###default group (can have more than one)
+prefix = ";" ###default prefix
+owner = "geekboyswag" ###your username
 masters = [""]
