@@ -10,11 +10,10 @@ class cmd_start():
 
                 if cmd == 'cmds':
                    cm = list()
-                   if Access().get(user)>1:
-                      for x in commands:
-                          if x.title() not in cm:
-                            cm.append(x.title())
-                      say("%s you have <b>'%s'</b> available commands: <b>%s</b>." % (user, len(commands), ", ".join(cm)))
+                   for x in commands:
+                       if x.title() not in cm:
+                          cm.append(x.title())
+                   say("%s you have <b>'%s'</b> available commands: <b>%s</b>." % (user, len(commands), ", ".join(cm)))
                 
                 if cmd == 'say':
                    if(len(args)) < 1:
