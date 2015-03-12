@@ -4,7 +4,7 @@ import coco.internals
 lib = coco.internals
 
 class cmd_start():
-        def command(self, group, user, msg, cmd, args):
+        def command(self, bot, group, user, msg, cmd, args):
                 say = group.post
                 commands = ["cmds", "say"]
 
