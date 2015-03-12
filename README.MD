@@ -3,7 +3,7 @@ COCO.PY
 
 Version
 -------
-0.4 Stable-ish
+0.6 still Stable-ish
 
 
 What is it?
@@ -15,8 +15,8 @@ OH yeah.... its sorta stable-ish(pinch of salt pls)
 
 How do I use it?
 ----------------
-	um example.py ;)
+example.py
 
 License
 -------
-This program is distributed under the terms of the GNU GPL.
+Distributed under the terms of the GNU GPL.
