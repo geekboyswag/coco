@@ -32,17 +32,22 @@ class Bot(coco.internals.Manager):
                      group.post(str(e))
 
                 if len(prefix)>1:
-                 if msg.post.split()[0][:6] == prefix:
-                    cmd = msg.post.split()[1][:6].lower()
-                    args = msg.post.split()[2][:6]
-                    self._callEvent("Command", group, user, msg, cmd, args)
+                 if post.split()[0][:6] == prefix:
+                    cmd = post.split()[1][:6].lower()
+                    args = post.split()[2][:6]
+                    bot = self
+                    self._callEvent("Command", bot, group, user, msg, cmd, args)
                 else:
-                 if msg.post[0] == prefix:
-                    cmd = msg.post.split()[0][1:].lower()
-                    args = msg.post.split()[1:]
-                    self._callEvent("Command", group, user, msg, cmd, args)
+                 if post[0] == prefix:
+                    bot = self
+                    data = post[1:].split(" ", 1).lower()
+                    if len(data) > 1:
+			cmd, args = data[0], data[1]
+		    else:
+			cmd, args = data[0], ""
+                    self._callEvent("Command", bot, group, user, msg, cmd, args)
                     
-        def _p_Command(self, group, user, msg, cmd, args):
-            cmdUtil.cmd_start().command(group, user, msg, cmd, args)
+        def _p_Command(self, bot, group, user, msg, cmd, args):
+            cmdUtil.cmd_start().command(bot, group, user, msg, cmd, args)
 
 bot = Bot(conf.groups, conf.name, conf.password)._init()
