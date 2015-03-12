@@ -34,9 +34,13 @@ class Bot(coco.internals.Manager):
                      group.post(str(e))
 
                 if len(prefix)>1:  
-                 if post.split()[0][:6] == prefix:
-                    cmd = post.split()[1][:6].lower()
-                    args = post.split()[2][:6] #### need to fix -.-
+                 if post.split()[0] == prefix:
+                    cmd = post.split()[1].lower()
+                    x = post.split()[2:]
+                    if len(x)>0:
+                    	args = ' '.join(x)
+                    else:
+                    	args = ''
                     bot = self
                     self._callEvent("Command", bot, group, user, msg, cmd, args)
                 else:
