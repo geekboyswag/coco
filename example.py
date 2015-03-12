@@ -20,27 +20,28 @@ class Bot(coco.internals.Manager):
 		if user == group.username: return              
 	
                 if msg.post == group.username:
-                      group.post('<b>%s</b> >_> {how can I help you}? (The current prefix is %s )' % (user, prefix)
-              
-                if msg.post == '%s reload' % (group.username.lower()):
+                      group.post('<b>%s</b> >_> {how can I help you}? (The current prefix is %s )' % (user, prefix))
+                
+                reload_command = '%s reload' % (group.username.lower())
+                if msg.post == reload_command:
                   try:
                    imp.reload(conf)
                    imp.reload(coco.internals)
                    imp.reload(cmdUtil)
-                   group.post('Reloaded All Saved Modules.')
+                   group.post('Reloaded All Modules.')
                   except Exception as e:
                      group.post(str(e))
 
-                if len(prefix)>1:
+                if len(prefix)>1:  
                  if post.split()[0][:6] == prefix:
                     cmd = post.split()[1][:6].lower()
-                    args = post.split()[2][:6]
+                    args = post.split()[2][:6] #### need to fix -.-
                     bot = self
                     self._callEvent("Command", bot, group, user, msg, cmd, args)
                 else:
                  if post[0] == prefix:
                     bot = self
-                    data = post[1:].split(" ", 1).lower()
+                    data = post[1:].split(" ", 1)
                     if len(data) > 1:
 			cmd, args = data[0], data[1]
 		    else:
