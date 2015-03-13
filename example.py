@@ -54,6 +54,6 @@ class Bot(coco.internals.Manager):
                     self._callEvent("Command", bot, group, user, msg, cmd, args)
                     
         def _p_Command(self, bot, group, user, msg, cmd, args):
-            cmdUtil.cmd_start().command(bot, group, user, msg, cmd, args)
+            cmdUtil.cmd_start().commands(bot, group, user, msg, cmd, args)
 
 bot = Bot(conf.groups, conf.name, conf.password)._init()
