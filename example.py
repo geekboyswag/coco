@@ -42,7 +42,7 @@ class Bot(coco.internals.Manager):
                     else:
                     	args = ''
                     bot = self
-                    self._callEvent("Command", bot, group, user, msg, cmd, args)
+                    self._callEvent("Commands", bot, group, user, msg, cmd, args)
                 else:
                  if post[0] == prefix:
                     bot = self
@@ -51,9 +51,9 @@ class Bot(coco.internals.Manager):
 			cmd, args = data[0], data[1]
 		    else:
 			cmd, args = data[0], ""
-                    self._callEvent("Command", bot, group, user, msg, cmd, args)
+                    self._callEvent("Commands", bot, group, user, msg, cmd, args)
                     
-        def _p_Command(self, bot, group, user, msg, cmd, args):
+        def _p_Commands(self, bot, group, user, msg, cmd, args):
             cmdUtil.cmd_start().commands(bot, group, user, msg, cmd, args)
 
 bot = Bot(conf.groups, conf.name, conf.password)._init()
