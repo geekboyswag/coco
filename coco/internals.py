@@ -132,9 +132,6 @@ class PM:
 	def sendmsg(self, who, msg):
 		self.send("msg", who, msg)
 
-
-
-
 class Message(object):
 	def __init__(self, **kw):
 		self._mid = None
@@ -176,8 +173,6 @@ class Message(object):
 class Struct:
 	def __init__(self, **entries):
 		self.__dict__.update(entries)
-
-
 
 class Group(object):
 	def __init__(self, mgr, name, username = None, password = None, type = "user"):
@@ -245,6 +240,7 @@ class Group(object):
 			self.s("delallmsg", unid, ip, args)
 			return True
 		return False
+		
 	def unbanUser(self, args):
 		if args:
 			ip = None
@@ -272,7 +268,6 @@ class Group(object):
 			self.s("block", unid, ip, args)
 			return True
 		return False
-
 
 	def connect(self):
 		try:
@@ -356,10 +351,10 @@ class Group(object):
 				self.sock.close()
 				self.connected = False
 
-
 	def logout(self):
 		self.s("blogout")
 		self.username = "!anon"
+		
 	def login(self, user = None, password = None):
 		if user and password:
 			self.s("blogin", user, password)
@@ -377,6 +372,8 @@ class Group(object):
 		
 		for k, v in _censor.items():
 			contents = contents.replace(k, v)
+			
+		contents = contents.replace(self.mgr.password, 'http://i.imgur.com/bqJ5N8B.jpg')
 		
 		data = ('<n{nameColor}/><f x{fontSize}{fontColor}="{fontFace}">{contents}'.format(
 			nameColor = self._nameColor,
@@ -422,7 +419,7 @@ class Manager(object):
 		self.usePremium = True
 		self.uid = str(random.randrange(10 ** 15, (10 ** 16) - 1))
 		self.startTime = time.time()
-		self.prefix = "@"
+		self.prefix = None
 		self.threads = {}
 		self.queue = queue.Queue()
 		self.banlist = list()
@@ -443,9 +440,6 @@ class Manager(object):
 
 	def _rH(self):
 		return self._history
-
-	
-		
 		
 	def getMessage(self, mid):
 		return self._msgs.get(mid)
@@ -475,7 +469,6 @@ class Manager(object):
 			return group._recvQueue.get()
 		except queue.Empty:
 			pass
-			
 			
 	def _p_onJoin(self, *args):
 		print("JR","%s %s" % (args[1], args[0].name))
@@ -586,13 +579,14 @@ class Manager(object):
 			if name not in group.users:
 				group.users.append(name)
 			group._userdata.append({"name":name, "id":args[2], "uid":args[3], "time":args[7]})
-		if args[1] == "2":
+		if args[1] == "2": # switch
 			self._callEvent("onSwitch",group,olddata[-1]["name"],name)
 			group._userdata.append({"name":name, "id":args[2], "uid":args[3], "time":args[7]})
 			if olddata[-1]["name"] in group.users:
 				group._userdata.remove(olddata[-1])
 				group.users.remove(olddata[-1]["name"])
 				group.users.append(name)
+				
 	def _r_ok(self, group, args):
 		self._callEvent("ok", group)
 		group.owner = args[1]
@@ -615,7 +609,6 @@ class Manager(object):
 			self_mq = msg
 			self._addHistory(msg, group.name)
 
-		
 	def _r_i(self, group, args):
 		args = args[1:]
 		mtime = float(args[0])
@@ -774,9 +767,6 @@ class Manager(object):
 		
 	def PMHanlder(self, who, m): # hanlder?
 		PM(self.username, self.password).sendmsg(who , m)
-			
-		
-			
 	
 	def run(self):
 		PM(self.username, self.password)
